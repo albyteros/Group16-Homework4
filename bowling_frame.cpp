@@ -61,7 +61,11 @@ void Bowling_Frame::update_scores()
 		score1_ = dist10(rng);
 		roll_one_ = true;
 
-		if(score1_ == 10) strike_ = true; 
+        //strike ends the frame
+		if(score1_ == 10) {
+		    strike_ = true;
+		    roll_two_ = true;
+        }
 	}
 	else if ( !strike_ && !roll_two_ ) 	
 	{
@@ -73,7 +77,4 @@ void Bowling_Frame::update_scores()
 	}
 	else if (next_frame_) 	next_frame_->update_scores();
 
-	frame_score_ = score1_ + score2_;
 }
-
-
