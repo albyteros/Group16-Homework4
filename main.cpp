@@ -38,17 +38,36 @@ int main(int argcount, char* args[])
     int playerCount = std::stoi(args[1]);
 
 	//make frames
-	Bowling_Frame * f1 = new Bowling_Frame(1);
+		Bowling_Frame * f1 = new Bowling_Frame(1);
 	Bowling_Frame * f2 = new Bowling_Frame(2);
 	Bowling_Frame * f3 = new Bowling_Frame(3);
+	Bowling_Frame * f4 = new Bowling_Frame(4);
+	Bowling_Frame * f5 = new Bowling_Frame(5);
+	Bowling_Frame * f6 = new Bowling_Frame(6);
+	Bowling_Frame * f7 = new Bowling_Frame(7);
+	Bowling_Frame * f8 = new Bowling_Frame(8);
+	Bowling_Frame * f9 = new Bowling_Frame(9);
+	Bowling_Frame * f10 = new Bowling_Frame(10);
 
 	//link frames together
 	f1->next_frame(f2);
-
-	f2->next_frame(f3);
 	f2->prev_frame(f1);
-
-	f3->prev_frame(f2);	
+	f2->next_frame(f3);
+	f3->prev_frame(f2);
+	f3->next_frame(f4);
+	f4->prev_frame(f3);
+	f4->next_frame(f5);
+	f5->prev_frame(f4);
+	f5->next_frame(f6);
+	f6->prev_frame(f5);
+	f6->next_frame(f7);
+	f7->prev_frame(f6);
+	f7->next_frame(f8);
+	f8->prev_frame(f7);
+	f8->next_frame(f9);
+	f9->prev_frame(f8);
+	f9->next_frame(f10);
+	f10->prev_frame(f9);
 
 	//set frame scores	
 	f1->update_scores();
