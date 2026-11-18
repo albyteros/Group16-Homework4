@@ -28,6 +28,12 @@ int main(int argcount, char* args[])
     return 1;
     }
 
+    //general error handling
+    if (args[1] < 1){
+    std::cerr << "Please put in a sensical number of players" << std::endl;
+    return 1;
+    }
+
     //get playercount + convert arg to int
     int playerCount = std::stoi(args[1]);
 
