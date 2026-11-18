@@ -5,6 +5,7 @@
 class Bowling_Frame
 {
 	private:
+		int num_players_;
 		int score1_;
 		int score2_;
 		bool strike_;
