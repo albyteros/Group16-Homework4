@@ -12,6 +12,9 @@ Bowling_Frame::Bowling_Frame(int fnum)
 	spare_ = false;
 	frame_num_ = fnum;
 	frame_score_ = 0;
+	roll_one_ = false;
+	roll_two_ = false;
+	total_score_;
 
 	next_frame_ = NULL;
 	prev_frame_ = NULL;
@@ -20,8 +23,8 @@ Bowling_Frame::Bowling_Frame(int fnum)
 
 Bowling_Frame::~Bowling_Frame()
 {
-	free(next_frame_);
-	free(prev_frame_);
+ 	//free(next_frame_);
+	//free(prev_frame_);
 }
 
 Bowling_Frame* Bowling_Frame::next_frame() { return next_frame_; }
