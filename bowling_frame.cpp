@@ -16,7 +16,6 @@ Bowling_Frame::Bowling_Frame(int fnum)
 	roll_one_ = false;
 	roll_two_ = false;
 	roll_three_ = false;
-	total_score_;
 
 	next_frame_ = NULL;
 	prev_frame_ = NULL;

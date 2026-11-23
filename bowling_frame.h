@@ -14,7 +14,6 @@ class Bowling_Frame
 		bool roll_two_;
 		bool roll_three_;
 
-		int total_score_;
 		int frame_num_;
 		int frame_score_;
 

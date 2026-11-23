@@ -12,7 +12,6 @@ int current_game_total(Bowling_Frame * first_frame)
 {
     Bowling_Frame * temp = first_frame;
     int game_total = 0;
-    int temp_total = 0;
     while(temp)
     {
         game_total += temp->frame_score();
@@ -29,14 +28,20 @@ int main(int argcount, char* args[])
         return 1;
     }
 
-    //general error handling
-    if (std::stoi(args[1]) < 1){
-        std::cerr << "Please put in a sensical number of players" << std::endl;
+    //get playercount + convert arg to int
+    int playerCount = 0;
+    try {
+        playerCount = std::stoi(args[1]);
+    } catch (...) {
+        std::cerr << "Number of players must be a number" << std::endl;
         return 1;
     }
 
-    //get playercount + convert arg to int
-    int playerCount = std::stoi(args[1]);
+    //general error handling
+    if (playerCount < 1){
+        std::cerr << "Please put in a sensical number of players" << std::endl;
+        return 1;
+    }
     Bowling_Frame** players = new Bowling_Frame*[playerCount]; // create array of pointers
 
     // for each player, create 10 frames and link them together
