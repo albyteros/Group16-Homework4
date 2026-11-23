@@ -54,6 +54,8 @@ int main(int argcount, char* args[])
         }
     }
 
+    cout << "Player count is: " << playerCount << endl;
+
     //set frame scores
     for (int i = 0; i < playerCount; i++) {
         Bowling_Frame* curr = players[i];
@@ -62,24 +64,26 @@ int main(int argcount, char* args[])
         for (int j = 0; j < 21; j++) {
             curr->update_scores();
         }
-
-        cout << "Player " << i + 1
-             << " Total: " << current_game_total(curr) << endl;
     }
 
     //iterate through linked list and print values
     for (int i = 0; i < playerCount; i++) {
-        cout << "Player " << i + 1 << endl;
-
         Bowling_Frame * traverse = players[i];
 
         while (traverse != nullptr)	 {
-            cout << "Frame " << traverse->frame_num() << ": " << endl
+            cout << "Frame " << traverse->frame_num() << ":" << endl
                  << " Score 1: " << traverse->score1() << endl
                  << " Score 2: " << traverse->score2() << endl;
 
+            //last frame gets a third roll after a strike or spare
+            if (!traverse->next_frame() && (traverse->strike() || traverse->spare()))
+                cout << " Score 3: " << traverse->score3() << endl;
+
             traverse = traverse->next_frame();
         }
+
+        cout << endl << "Total Game Score for player " << i + 1 << ": "
+             << current_game_total(players[i]) << endl << endl;
     }
 	// for both players, delete the allocated bowling frames and free the memory used by the array
     for (int i = 0; i < playerCount; i++) {
