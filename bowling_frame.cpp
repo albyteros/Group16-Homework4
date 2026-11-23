@@ -59,6 +59,29 @@ int Bowling_Frame::frame_score()
 	return frame_score_; 
 }
 
+void Bowling_Frame::calc_frame_score()
+{
+	frame_score_ = score1_ + score2_;
+
+	//last frame has no bonus, just the extra roll
+	if (!next_frame_) {
+		frame_score_ += score3_;
+		return;
+	}
+
+	//spare: bonus is the next roll
+	if (spare_) frame_score_ += next_frame_->score1();
+	//strike: bonus is the next two rolls
+	else if (strike_) {
+		frame_score_ += next_frame_->score1();
+		//next frame was a strike too, so the second roll is in the frame after
+		if (next_frame_->strike() && next_frame_->next_frame())
+			frame_score_ += next_frame_->next_frame()->score1();
+		else
+			frame_score_ += next_frame_->score2();
+	}
+}
+
 void Bowling_Frame::update_scores()
 {
 	std::uniform_int_distribution<std::mt19937::result_type> dist10(0, 10);
@@ -96,6 +119,16 @@ void Bowling_Frame::update_scores()
 		score3_ = distX(rng);
 		roll_three_ = true;
 	}
-	else if (next_frame_) 	next_frame_->update_scores();
+	else
+	{
+		if (next_frame_) next_frame_->update_scores();
+		return;
+	}
 
+	//a new roll can change the bonus of this frame and the two before it
+	calc_frame_score();
+	if (prev_frame_) {
+		prev_frame_->calc_frame_score();
+		if (prev_frame_->prev_frame()) prev_frame_->prev_frame()->calc_frame_score();
+	}
 }

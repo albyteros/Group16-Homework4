@@ -21,6 +21,7 @@ class Bowling_Frame
 		Bowling_Frame * next_frame_;
 		Bowling_Frame * prev_frame_;
 
+		void calc_frame_score();
 
 	public:
 		Bowling_Frame(int fnum);
