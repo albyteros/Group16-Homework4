@@ -58,8 +58,8 @@ int main(int argcount, char* args[])
     for (int i = 0; i < playerCount; i++) {
         Bowling_Frame* curr = players[i];
 
-        // simulate 20 rolls for each player
-        for (int j = 0; j < 20; j++) {
+        // simulate up to 21 rolls for each player
+        for (int j = 0; j < 21; j++) {
             curr->update_scores();
         }
 
